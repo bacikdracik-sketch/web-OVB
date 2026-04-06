@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matúš Bača | Finančný konzultant OVB Allfinanz Slovensko a.s.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-navy: #0F172A;
+            --gold-muted: #B38E44;
+            --gold-light: #D4AF37;
+            --soft-white: #FAFAFA;
+            --pure-white: #FFFFFF;
+            --light-blue-bg: #F0F4F8;
+            --text-main: #334155;
+            --text-light: #64748B;
+            --border-color: #E2E8F0;
+            --shadow-subtle: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-main);
+            background-color: var(--pure-white);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGÁCIA (MENU) --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10%;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10000;
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            border-left: 3px solid var(--gold-muted);
+            padding-left: 15px;
+            cursor: pointer;
+        }
+
+        .logo-name {
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            color: var(--primary-navy);
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .logo-sub {
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            color: var(--gold-muted);
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-navy);
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--gold-muted);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-muted);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- HAMBURGER --- */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    background: var(--primary-navy);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger viditeľný na mobil */
+@media (max-width: 1100px) {
+    .hamburger {
+        display: flex;
+    }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 90px;
+        right: 10%;
+        background: var(--pure-white);
+        padding: 20px;
+        gap: 20px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+    }
+    .nav-links.open {
+        display: flex;
+    }
+    .nav-links a {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+}
+
+/* Hamburger animácia pri otvorení */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Hover efekt menu linkov */
+.nav-links a:hover {
+    color: var(--gold-muted);
+    transform: translateX(3px);
+}
+
+        /* --- SEKCIE --- */
+        section {
+            padding: 140px 10%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .section-header h2 {
+            font-weight: 200;
+            font-size: 2.8rem;
+            color: var(--primary-navy);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .section-header span {
+            color: var(--gold-muted);
+            font-weight: 700;
+        }
+
+        /* GRID ŠTRUKTÚRA */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 70px 50px;
+            border: 1px solid var(--border-color);
+            transition: all 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card:hover {
+            border-color: var(--gold-muted);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--gold-muted);
+            margin-bottom: 30px;
+        }
+
+        .card h3 {
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--primary-navy);
+            text-transform: uppercase;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 300;
+            flex-grow: 1;
+        }
+
+        .bg-light { background-color: var(--light-blue-bg); }
+
+        /* --- O MNE (BIO) --- */
+        .bio {
+            display: flex;
+            flex-wrap: wrap;
+            background: var(--primary-navy);
+            color: white;
+            padding: 0;
+        }
+
+        .bio-image {
+    flex: 1;
+    min-width: 500px;
+    min-height: 700px;
+    background-color: #0F172A; /* tmavý fallback */
+    background-image: url('image_0.png'); /* tvoja fotka */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-right: 8px solid var(--gold-muted);
+}
+
+        .bio-text {
+            flex: 1.2;
+            padding: 150px 10%;
+            min-width: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .bio-text h2 {
+            font-weight: 200;
+            font-size: 3.2rem;
+            margin-bottom: 40px;
+            color: var(--soft-white);
+            line-height: 1.2;
+        }
+
+        .bio-text b { font-weight: 700; color: var(--gold-muted); }
+
+        .bio-text p {
+            font-size: 1.2rem;
+            color: rgba(250, 250, 250, 0.85);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .bio-signature {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sig-name {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--gold-muted);
+            letter-spacing: 1px;
+        }
+
+        .sig-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.6;
+        }
+
+        /* --- RECENZIE --- */
+        .review-card {
+            background: white;
+            padding: 50px;
+            border-left: 5px solid var(--gold-muted);
+            position: relative;
+        }
+
+        .quote-icon {
+            font-size: 3rem;
+            color: var(--light-blue-bg);
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-family: serif;
+        }
+
+        .review-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .reviewer-name {
+            font-weight: 700;
+            color: var(--primary-navy);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- KONTAKT --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 100px;
+        }
+
+        .contact-info h2 {
+            font-size: 3.2rem;
+            font-weight: 200;
+            margin-bottom: 60px;
+            line-height: 1.1;
+        }
+
+        .contact-method {
+            margin-bottom: 45px;
+        }
+
+        .method-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold-muted);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .method-link {
+            font-size: 1.6rem;
+            color: var(--primary-navy);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .method-link:hover {
+            color: var(--gold-muted);
+        }
+
+        .contact-form {
+            background: var(--soft-white);
+            padding: 60px;
+        }
+
+        .form-group {
+            margin-bottom: 40px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px 0;
+            border: none;
+            border-bottom: 1px solid #cbd5e1;
+            background: transparent;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-bottom-color: var(--gold-muted);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 100px 10% 60px;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            color: var(--gold-muted);
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        .footer-legal {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.3;
+        }
+
+        
+    /* RESPONSIVITA */
+        @media (max-width: 1100px) {
+            .nav-links { display: none; }
+            .bio-image { min-width: 100%; min-height: 450px; border-right: none; border-bottom: 8px solid var(--gold-muted); }
+            .contact-container { grid-template-columns: 1fr; gap: 80px; }
+            .hero h1 { font-size: 3rem; }
+        }
+        .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 90px;
+    right: 10%;
+    background: var(--pure-white);
+    padding: 20px;
+    gap: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px; 
+    }
+    
+    .btn-primary {
+    display: inline-block;           
+    background-color: #0F172A; /* tmavá modrá ako hlavná farba */
+    color: var(--pure-white);   /* biely text */
+    font-weight: 600;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color: #1e2a47; /* svetlejšia modrá pri hover */
+    transform: translateY(-2px);
+    cursor: pointer;
+}
+
+.hero-tag {
+    font-size: 1rem;             /* veľkosť textu */
+    font-weight: 600;            /* tučný text */
+    color: var(--gold-muted);    /* zlatá farba */
+    letter-spacing: 1px;         /* medzery medzi písmenami */
+    text-transform: uppercase;   /* veľké písmená */
+    margin-bottom: 15px;         /* vzdialenosť od h1 */
+}
+
+/* --- HERO SEKCE OPTIMALIZÁCIA --- */
+.hero-tag {
+    font-size: 0.9rem;             /* mierne menšie pre lepšiu proporciu */
+    font-weight: 600;              
+    color: var(--gold-muted);      
+    letter-spacing: 1px;           
+    text-transform: uppercase;     
+    margin-bottom: 10px;           
+}
+
+.hero h1 {
+    font-size: 2rem;               /* primeraná veľkosť pre desktop */
+    line-height: 1.3;              
+    font-weight: 600;              
+    margin-bottom: 20px;           /* medzera pod nadpisom */
+}
+
+.hero p {
+    font-size: 1rem;               /* text pod nadpisom primeraný */
+    line-height: 1.6;              
+    max-width: 700px;              /* aby text nebol príliš široký */
+    margin-bottom: 30px;
+}
+
+/* RESPONSÍVNE PRE MOBIL */
+@media (max-width: 1100px) {
+    .hero-tag {
+        font-size: 0.8rem;          
+    }
+    .hero h1 {
+        font-size: 1.6rem;          
+    }
+    .hero p {
+        font-size: 0.9rem;          
+    }
+}
+
+    </style>
+  <nav>
+      
+    <div class="logo-container" onclick="window.scrollTo(0,0)">
+        <div class="logo-name">Matúš Bača</div>
+        <div class="logo-sub">Finančný Konzultant</div>
+    </div>
+
+    <!-- Hamburger tlačidlo pre mobil -->
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="nav-links" id="nav-links">
+        <a href="#sluzby">Služby</a>
+        <a href="#investicie">Investovanie</a>
+        <a href="#filozofia">O mne</a>
+        <a href="#recenzie">Recenzie</a>
+        <a href="#kariera-form">Kariéra</a> 
+        <a href="#kontakt">Kontakt</a>
+    </div>
+</nav>
+
+    <section class="hero" id="home">
+        <div class="hero-tag">Wealth & Asset Management</div>
+        <h1>Budujte <b>istotu</b>, ktorá pretrvá generácie.</h1>
+        <p>Profesionálne finančné konzultácie so zameraním na dlhodobú udržateľnosť, ochranu kapitálu a strategické plánovanie pod záštitou lídra na trhu OVB Allfinanz Slovensko a.s.</p>
+        <div>
+            <a href="#kontakt" class="btn-primary">DOHODNÚŤ KONZULTÁCIU</a>
+        </div>
+    </section>
+
+    <section id="sluzby" class="bg-light">
+        <div class="section-header">
+            <h2>Cesta k <span>Vlastnému Bývaniu</span></h2>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-icon">01</div>
+                <h3>Hypotekárny Audit</h3>
+                <p>Detailná analýza vašich možností naprieč celým bankovým trhom. Nehľadáme len najnižší úrok, ale najlepšie podmienky pre váš konkrétny životný scenár.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">02</div>
+                <h3>Refinančná Stratégia</h3>
+                <p>Optimalizácia existujúcich záväzkov. Zníženie mesačnej splátky a celkového preplatenia úveru prostredníctvom včasného a správne načasovaného refinancovania.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">03</div>
+                <h3>Administratívny Servis</h3>
+                <p>Kompletné zastrešenie procesu. Od komunikácie s bankou a znalcom až po podanie dokumentov na kataster nehnuteľností. Šetríme váš čas aj energiu.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="investicie">
+        <div class="section-header">
+            <h2>Rast a <span>Ochrana Majetku</span></h2>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-icon">04</div>
+                <h3>Správa Portfólia</h3>
+                <p>Tvorba diverzifikovaného investičného portfólia, ktoré odráža váš rizikový profil. Využívame nástroje globálnych správcov aktív pre maximálnu stabilitu.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">05</div>
+                <h3>Boj proti Inflácii</h3>
+                <p>Aktívne hľadanie riešení, ktoré chránia kúpnu silu vašich úspor. Nenechávajte svoje peniaze strácať hodnotu na bežných účtoch s nulovým úrokom.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">06</div>
+                <h3>Generačné Bohatstvo</h3>
+                <p>Dlhodobé plánovanie pre vaše deti a ďalšie generácie. Nastavenie procesov tak, aby majetok rástol a bol bezpečne odovzdaný vašim nasledovníkom.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-light">
+        <div class="section-header">
+            <h2>Finančná <span>Sloboda a Bezpečie</span></h2>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-icon">07</div>
+                <h3>Dôchodková Renta</h3>
+                <p>Analýza 2. a 3. piliera doplnená o súkromné formy sporenia. Cieľom je zabezpečiť vám príjem, ktorý vám umožní udržať si životný štandard aj v starobe.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">08</div>
+                <h3>Krytie Životných Rizík</h3>
+                <p>Zabezpečenie príjmu pre nepredvídané situácie. Profesionálne nastavenie poistnej ochrany tak, aby v prípade choroby alebo úrazu netrpela vaša rodina.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">09</div>
+                <h3>Ochrana Aktív</h3>
+                <p>Poistenie nehnuteľností, domácností a cenností. Komplexná ochrana všetkého, čo ste si roky budovali, pred vonkajšími vplyvmi a rizikami.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="filozofia" class="bio">
+        <div class="bio-image"></div>
+        <div class="bio-text">
+            <h2>Partnerstvo postavené na <b>Hodnotách</b>.</h2>
+            <p>Moja práca v <b>OVB Allfinanz Slovensko a.s.</b> nie je o predaji produktov. Je o budovaní vzťahov založených na absolútnej dôvere a transparentnosti.</p>
+            <p>Svet financií je dnes komplexnejší než kedykoľvek predtým. Mojou úlohou je byť vaším navigátorom, ktorý filtruje šum trhu a prináša vám overené riešenia šité na mieru vašim ambíciám.</p>
+            <p>Verím v disciplínu, objektivitu a dlhodobú víziu. Každé rozhodnutie, ktoré dnes urobíme, musí dávať zmysel aj o desať či dvadsať rokov.</p>
+            <div class="bio-signature">
+                <span class="sig-name">Matúš Bača</span>
+                <span class="sig-title">Senior Konzultant | OVB Allfinanz</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="recenzie" class="bg-light">
+    <div class="section-header">
+        <h2>Hlasy <span>Mojich Klientov</span></h2>
+    </div>
+
+    <div class="grid-3">
+        <div class="review-card">
+            <span class="quote-icon">“</span>
+            <p class="review-text">Pán Bača nám pomohol s komplexným prefinancovaním bývania. Ušetril nám nielen stovky eur mesačne, ale najmä kopec stresu pri vybavovaní papierov.</p>
+            <p class="reviewer-name">Ing. Michal H., Podnikateľ</p>
+            <p class="review-stars">★★★★★</p>
+        </div>
+
+        <div class="review-card">
+            <span class="quote-icon">“</span>
+            <p class="review-text">Oceňujem najmä ľudský prístup a schopnosť vysvetliť zložité investičné stratégie jednoduchou rečou. Konečne mám pocit, že moje peniaze pracujú pre mňa.</p>
+            <p class="reviewer-name">Mgr. Jana K., IT špecialistka</p>
+            <p class="review-stars">★★★★★</p>
+        </div>
+
+        <div class="review-card">
+            <span class="quote-icon">“</span>
+            <p class="review-text">Dôvera je vo financiách kľúčová. U pána Baču som našiel partnera, na ktorého sa môžem spoľahnúť pri každej dôležitej životnej zmene.</p>
+            <p class="reviewer-name">Peter V., Obchodný riaditeľ</p>
+            <p class="review-stars">★★★★★</p>
+        </div>
+
+        <div class="review-card">
+            <span class="quote-icon">“</span>
+            <p class="review-text">Pomohol mi nastaviť investície aj poistky tak, aby dávali reálny zmysel. Všetko jasne vysvetlené bez tlaku.</p>
+            <p class="reviewer-name">Lucia M., Zdravotná sestra</p>
+            <p class="review-stars">★★★★☆</p>
+        </div>
+
+        <div class="review-card">
+            <span class="quote-icon">“</span>
+            <p class="review-text">Ako podnikateľ oceňujem hlavne rýchlosť, prehľad a riešenia na mieru. Presne viem, kde mám peniaze a prečo.</p>
+            <p class="reviewer-name">Tomáš R., Majiteľ firmy</p>
+            <p class="review-stars">★★★★★</p>
+        </div>
+
+        <div class="review-card">
+            <span class="quote-icon">“</span>
+            <p class="review-text">Konečne niekto, kto sa na financie pozerá dlhodobo. Nastavili sme plán pre mňa aj deti.</p>
+            <p class="reviewer-name">Martina S., Učiteľka</p>
+            <p class="review-stars">★★★★☆</p>
+        </div>
+
+        <div class="review-card">
+            <span class="quote-icon">“</span>
+            <p class="review-text">Výborná komunikácia a profesionálny prístup. Hypotéka prebehla bez komplikácií a všetko bolo vybavené za mňa.</p>
+            <p class="reviewer-name">Juraj D., Technik</p>
+            <p class="review-stars">★★★★★</p>
+        </div>
+
+        <div class="review-card">
+            <span class="quote-icon">“</span>
+            <p class="review-text">Najviac si cením transparentnosť. Žiadne skryté veci, všetko narovinu.</p>
+            <p class="reviewer-name">Andrea P., HR manažérka</p>
+            <p class="review-stars">★★★★★</p>
+        </div>
+
+        <div class="review-card">
+            <span class="quote-icon">“</span>
+            <p class="review-text">Perfektné riešenie poistiek a ochrany príjmu. Konečne mám pokoj.</p>
+            <p class="reviewer-name">Marek T., Stavbár</p>
+            <p class="review-stars">★★★★☆</p>
+        </div>
+    </div>
+    
+
+    <div class="cta-under-reviews" style="text-align:center; margin-top:60px;">
+        <a href="#kontakt" class="btn-primary">Staňte sa ďalším spokojným klientom</a>
+    </div>
+    
+    <div class="stats-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:40px; margin-top:80px; text-align:center;">
+        <div>
+            <h3 style="font-size:2.5rem; color:var(--gold-muted);">200+</h3>
+            <p>Spokojných klientov</p>
+        </div>
+        <div>
+            <h3 style="font-size:2.5rem; color:var(--gold-muted);">1M+</h3>
+            <p>Spravovaných aktív</p>
+        </div>
+        <div>
+            <h3 style="font-size:2.5rem; color:var(--gold-muted);">10+</h3>
+            <p>Rokov skúseností</p>
+        </div>
+    </div>
+<section id="kariera-form" class="bg-light">
+    <div class="section-header">
+        <h2>Buduj <span>Kariéru</span> so mnou</h2>
+    </div>
+
+    <div style="max-width:700px; margin:0 auto; text-align:center;">
+        <p style="margin-bottom:40px;">
+            Hľadám ambicióznych ľudí, ktorí chcú rásť, budovať vlastný biznis
+            a mať nadštandardný príjem. Skúsenosti nie sú podmienkou.
+        </p>
+        <a href="#kontakt" class="btn-primary">MÁM ZÁUJEM O SPOLUPRÁCU</a>
+    </div>
+</section>
+
+
+    <section id="kontakt">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Navrhnime Vašu <span>Stratégiu</span>.</h2>
+                <div class="contact-method">
+                    <span class="method-label">Telefonický kontakt</span>
+                    <a href="tel:0951499890" class="method-link">0951 499 890</a>
+                </div>
+                <div class="contact-method">
+                    <span class="method-label">E-mailová adresa</span>
+                    <a href="mailto:5538917@ovbmail.eu" class="method-link">5538917@ovbmail.eu</a>
+                </div>
+                <div class="contact-method">
+                    <span class="method-label">Sídlo spoločnosti</span>
+                    <p style="font-size: 1.1rem;">OVB Allfinanz Slovensko a.s.<br>Pobočka Michalovce / Východné Slovensko</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form action="https://formspree.io/f/xeepvqqy" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="MENO A PRIEZVISKO" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="VÁŠ E-MAIL" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="TELEFÓNNE ČÍSLO">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" rows="4" placeholder="V ČOM VÁM MÔŽEM POMÔCŤ?"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">ODOSLAŤ SPRÁVU</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+        <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.querySelector(".contact-form form");
+    form.addEventListener("submit", function(e) {
+        e.preventDefault(); // zastaví defaultné spracovanie
+        const data = new FormData(form);
+        fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                alert("Ďakujeme, vaša správa bola odoslaná."); // tu je text po slovensky
+                form.reset();
+            } else {
+                alert("Nastala chyba, skúste to prosím znova.");
+            }
+        });
+    });
+});
+</script>
+        <footer>
+    <span class="footer-logo">OVB ALLFINANZ SLOVENSKO A.S.</span>
+    <div class="footer-legal">
+        Matúš Bača vykonáva finančné sprostredkovanie ako podriadený finančný agent pod záštitou spoločnosti OVB Allfinanz Slovensko a.s., zapísanej v registri NBS pod číslom 5538917. Všetky poskytované informácie majú informatívny charakter a nenahrádzajú konkrétnu zmluvnú dokumentáciu.
+    </div>
+    <p class="copyright">Všetky práva vyhradené &copy; 2026 | Matúš Bača</p>
+</footer>
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('open'); // pridá alebo odstráni triedu open
+});
+</script>
+</body>
+</html>
