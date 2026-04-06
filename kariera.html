@@ -309,7 +309,7 @@ footer {
     <a href="index.html#investicie">Investovanie</a>
     <a href="index.html#filozofia">O mne</a>
     <a href="index.html#recenzie">Recenzie</a>
-    <a href="kariera.html#kariera-opportunity">Kariéra</a>
+    <a href="kariera.html">Kariéra</a>
     <a href="index.html#kontakt">Kontakt</a>
 </div>
 </nav>
@@ -412,7 +412,13 @@ form.addEventListener("submit", async function(e) {
         console.error(error);
     }
 });
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+    if(window.location.hash === "#kariera-opportunity") {
+        const section = document.querySelector(window.location.hash);
+        if(section) section.scrollIntoView({behavior: "smooth"});
+    }
+});
 </script>
-
 </body>
 </html>
