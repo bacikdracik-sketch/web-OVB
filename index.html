@@ -792,41 +792,7 @@
         </div>
     </section>
 
-        <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.querySelector(".contact-form form");
-
-    // AK FORM NEEXISTUJE → nič nerob
-    if (!form) return;
-
-    form.addEventListener("submit", async function(e) {
-        e.preventDefault();
-
-        const data = new FormData(form);
-
-        try {
-            const response = await fetch("https://formspree.io/f/xeepvqqy", {
-                method: "POST",
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (response.ok) {
-                alert("Správa odoslaná");
-                form.reset();
-            } else {
-                alert("Chyba odoslania");
-            }
-
-        } catch (error) {
-            console.error(error);
-            alert("Chyba spojenia");
-        }
-    });
-});
-</script>
+        
         <footer>
     <span class="footer-logo">OVB ALLFINANZ SLOVENSKO A.S.</span>
     <div class="footer-legal">
