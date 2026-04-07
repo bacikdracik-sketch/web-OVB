@@ -795,6 +795,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.querySelector(".contact-form form");
 
+    // AK FORM NEEXISTUJE → nič nerob
     if (!form) return;
 
     form.addEventListener("submit", async function(e) {
@@ -812,17 +813,15 @@ document.addEventListener("DOMContentLoaded", function() {
             });
 
             if (response.ok) {
-                alert("✅ Správa bola úspešne odoslaná!");
+                alert("Správa odoslaná");
                 form.reset();
             } else {
-                const resData = await response.json();
-                console.error(resData);
-                alert("❌ Chyba odoslania – skontroluj Formspree.");
+                alert("Chyba odoslania");
             }
 
         } catch (error) {
             console.error(error);
-            alert("❌ Chyba spojenia – pravdepodobne CORS alebo HTTPS.");
+            alert("Chyba spojenia");
         }
     });
 });
